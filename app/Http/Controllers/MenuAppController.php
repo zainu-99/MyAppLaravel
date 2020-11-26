@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Role;
-use App\Models\Menu;
+use App\Models\MenuApp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -17,7 +17,7 @@ class MenuAppController extends Controller
     {
         Session::put('pagename', "Menu Master");
         Session::save();
-        $menu = Menu::select('menu_app.*','roles.name as role_name','roles.url as role_url')->whereNull('menu_app_id')
+        $menu = MenuApp::select('menu_app.*','roles.name as role_name','roles.url as role_url')->whereNull('menu_app_id')
         ->with('childrenMenus')->leftJoin('roles','menu_app.id_role','roles.id')->orderBy('order_sort')
         ->get();
         return view("appdashboard.masterdata.menu.index", compact('menu'));

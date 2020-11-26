@@ -17,7 +17,8 @@
               <div class="col-md-2">
                     <div class="form-group" style="display:">
                       Group
-                      <select class="" id="id_group"  name="id_group" style="width: 100%;height:39px">
+                      <select required class="" id="id_group"  name="id_group" style="width: 100%;height:39px">
+                        <option value="">--Choose Group--</option>
                         @foreach($groups as $group)
                             <option  @if( Request::get('id')==$group->id) selected @endif value="{{$group->id}}">{{$group->name}} - {{$group->note}}</option>
                         @endforeach

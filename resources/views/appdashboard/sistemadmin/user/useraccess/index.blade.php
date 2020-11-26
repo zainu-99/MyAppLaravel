@@ -4,7 +4,7 @@
 <div class="card-header">
         <br/>
         <h3 class="card-title">
-          LIST USER is 
+          LIST USER
         </h3><br/><hr/>
         <form action="" method="get">
             <div class="form-group">
