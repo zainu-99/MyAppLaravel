@@ -6,7 +6,7 @@
     <td nowrap>{{$item->order_sort}}</td>
     <td nowrap>{{$item->created_at}}</td>
     <td nowrap>{{$item->updated_at}}</td>
-    <td style="width: 237px">    
+    <td style="width: 237px" nowrap>    
         @include('layouts.action.edit-button') 
         @include('layouts.action.delete-button')  
     </td>

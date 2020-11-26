@@ -25,7 +25,7 @@ class UserGroupLevelController extends Controller
         Session::put('pagename', "User Group");
         Session::save();
         $list =GroupLevel::selectRaw("groups.name,group_level.*,(SELECT '1' FROM user_group_level WHERE id_group_level = group_level.id and id_user = '".$iduser."') as isjoin")->whereNull('group_level_id')
-            ->with('childrenGroupsLevel')->leftJoin("groups","groups.id","group_level.id_group")
+            ->with(['ChildrenGroupsLevel'])->leftJoin("groups","groups.id","group_level.id_group")
             ->get();
         return view('appdashboard.sistemadmin.user.usergroup.index', ["list"=>$list]);
     }

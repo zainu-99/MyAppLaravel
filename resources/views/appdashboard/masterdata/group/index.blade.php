@@ -30,7 +30,7 @@
                         <td>{{$item->note}}</td>
                         <td>{{$item->created_at}}</td>
                         <td>{{$item->updated_at}}</td>
-                        <td style="width: 237px"> 
+                        <td style="width: 237px" nowrap> 
                             @include('layouts.action.edit-button') 
                             @include('layouts.action.delete-button') 
                         </td>
