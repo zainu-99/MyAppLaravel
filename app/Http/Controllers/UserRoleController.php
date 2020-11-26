@@ -23,7 +23,7 @@ class UserRoleController extends Controller
         $id_group_level = (isset($request->id_group_level)?$request->id_group_level:'-1');
         $groupLevels = GroupLevel::select("group_level.*","groups.name")->leftJoin("groups","groups.id","group_level.id_group")->leftJoin('user_group_level','user_group_level.id_group_level','group_level.id')->where('user_group_level.id_user',$id_user)->get();
         
-        $list =Role::selectRaw("roles.*,b.allow_view,b.allow_add,b.allow_edit,b.allow_delete,b.allow_print,b.allow_custom,roles.accessview,roles.accessadd,roles.accessedit,roles.accessdelete,roles.accessprint,roles.accesscustom")->leftJoin(DB::raw("(select * from user_role where id_user='".$id_user."') as b"),"b.id_role","roles.id")->leftJoin('role_group_level as c','roles.id','c.id_role')->OrderBy("roles.url")->OrderBy("roles.name")->where('c.id_group_level',$id_group_level)->get();
+        $list =Role::selectRaw("roles.*,c.isview,c.isadd,c.isedit,c.isdelete,c.isprint,c.iscustom,roles.accessview,roles.accessadd,roles.accessedit,roles.accessdelete,roles.accessprint,roles.accesscustom")->leftJoin(DB::raw("(select * from user_role where id_user='".$id_user."') as b"),"b.id_role","roles.id")->leftJoin('role_group_level as c','roles.id','c.id_role')->OrderBy("roles.url")->OrderBy("roles.name")->where('c.id_group_level',$id_group_level)->whereRaw('1 in (isview,isadd,isedit,isdelete,isprint,iscustom)')->get();
         return view("appdashboard.sistemadmin.user.useraccess.index", ["list"=>$list,"groupLevels"=>$groupLevels]);
     }
 

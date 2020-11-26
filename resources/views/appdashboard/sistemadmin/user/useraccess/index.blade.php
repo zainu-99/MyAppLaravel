@@ -4,7 +4,7 @@
 <div class="card-header">
         <br/>
         <h3 class="card-title">
-          LIST USER ACCESS 
+          LIST USER is 
         </h3><br/><hr/>
         <form action="" method="get">
             <div class="form-group">
@@ -40,19 +40,19 @@
                     <tr> 
                       <td>{{$key+1}}</td>
                       <td>{{$item->name}}</td>
-                      <td>@if($item->accessview == 1)
-                        <input id="cbview{{$key+1}}" type="checkbox" @if($item->allow_view == 1) checked @endif onclick="checkedAccess({{$item->id}},{{$key+1}})"/>@endif
+                      <td>@if($item->isview == 1)
+                        <input id="cbview{{$key+1}}" type="checkbox" @if($item->allow_view == 1) checked @endif onclick="checkedis({{$item->id}},{{$key+1}})"/>@endif
                       </td>
-                      <td>@if($item->accessadd == 1)
-                          <input id="cbadd{{$key+1}}" type="checkbox" @if($item->allow_add == 1) checked @endif onclick="checkedAccess({{$item->id}},{{$key+1}})"/>@endif</td>
-                      <td>@if($item->accessedit == 1)
-                        <input id="cbedit{{$key+1}}" type="checkbox" @if($item->allow_edit == 1) checked @endif onclick="checkedAccess({{$item->id}},{{$key+1}})"/>@endif</td>
-                      <td>@if($item->accessdelete == 1)
-                        <input id="cbdelete{{$key+1}}" type="checkbox" @if($item->allow_delete == 1) checked @endif onclick="checkedAccess({{$item->id}},{{$key+1}})"/>@endif</td>
-                      <td>@if($item->accessprint == 1)
-                        <input id="cbprint{{$key+1}}" type="checkbox" @if($item->allow_print == 1) checked @endif onclick="checkedAccess({{$item->id}},{{$key+1}})"/>@endif</td>
-                      <td>@if($item->accesscustom == 1)
-                        <input id="cbcustom{{$key+1}}" type="checkbox" @if($item->allow_orther == 1) checked @endif onclick="checkedAccess({{$item->id}},{{$key+1}})"/>@endif</td>
+                      <td>@if($item->isadd == 1)
+                          <input id="cbadd{{$key+1}}" type="checkbox" @if($item->allow_add == 1) checked @endif onclick="checkedis({{$item->id}},{{$key+1}})"/>@endif</td>
+                      <td>@if($item->isedit == 1)
+                        <input id="cbedit{{$key+1}}" type="checkbox" @if($item->allow_edit == 1) checked @endif onclick="checkedis({{$item->id}},{{$key+1}})"/>@endif</td>
+                      <td>@if($item->isdelete == 1)
+                        <input id="cbdelete{{$key+1}}" type="checkbox" @if($item->allow_delete == 1) checked @endif onclick="checkedis({{$item->id}},{{$key+1}})"/>@endif</td>
+                      <td>@if($item->isprint == 1)
+                        <input id="cbprint{{$key+1}}" type="checkbox" @if($item->allow_print == 1) checked @endif onclick="checkedis({{$item->id}},{{$key+1}})"/>@endif</td>
+                      <td>@if($item->iscustom == 1)
+                        <input id="cbcustom{{$key+1}}" type="checkbox" @if($item->allow_orther == 1) checked @endif onclick="checkedis({{$item->id}},{{$key+1}})"/>@endif</td>
                   </tr>
                     @endforeach
                   </tbody>
@@ -60,7 +60,7 @@
             </div>
       </div>
 <script>
-  function checkedAccess(idrole,key)
+  function checkedis(idrole,key)
   {
     $.ajax({
             type:'POST',
@@ -73,7 +73,7 @@
               allow_edit:+$('#cbedit'+key).is(':checked'),
               allow_delete:+$('#cbdelete'+key).is(':checked'),
               allow_print:+$('#cbprint'+key).is(':checked'),
-              allow_orther:+$('#cborther'+key).is(':checked'),
+              allow_custom:+$('#cbcustom'+key).is(':checked'),
             },
             success:function(data){      
                // alert(data);

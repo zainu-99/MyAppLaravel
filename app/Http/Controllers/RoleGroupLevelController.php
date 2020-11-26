@@ -16,23 +16,37 @@ class RoleGroupLevelController extends Controller
     {
         Session::put('pagename', "Role Group");
         Session::save();
-        $list =Role::selectRaw("roles.*,(SELECT '1' FROM role_group_level WHERE id_role = roles.id and id_group_level = '".$idgroup."') as isjoin")->OrderBy("url")->OrderBy("name")->get();
+        $list =Role::selectRaw("roles.*,b.isview,b.isadd,b.isedit,b.isdelete,b.isprint,b.iscustom")->leftJoin("role_group_level as b","roles.id","b.id_role")->OrderBy("url")->OrderBy("name")->get();
         return view("appdashboard.sistemadmin.grouplevel.grouprole.index", ["list"=>$list]);
     }
     public function add(Request $request,$idgroup)
     {
-        if($request->is_checked == 0){
-            RoleGroupLevel::where('id_role',$request->id_role)->where('id_group_level',$idgroup)->delete();
-            return "<p>delete<p>";
+        $is_exist = RoleGroupLevel::where('id_group_level',$idgroup)->where('id_role',$request->id_role)->count();
+        if($is_exist==0)
+        {
+            $tbl = new RoleGroupLevel();
+            $tbl->id_group_level = $idgroup;
+            $tbl->id_role = $request->id_role;
+            $tbl->isview = $request->isview;
+            $tbl->isadd = $request->isadd;
+            $tbl->isedit = $request->isedit;
+            $tbl->isdelete = $request->isdelete;
+            $tbl->isprint = $request->isprint;
+            $tbl->iscustom = $request->iscustom;
+            $tbl->save();
+            return "insert";
         }
         else
         {
-                RoleGroupLevel::where('id_role',$request->id_role)->where('id_group_level',$idgroup)->delete();
-                $tbl = new RoleGroupLevel();
-                $tbl->id_role = $request->id_role;
-                $tbl->id_group_level = $idgroup;
-                $tbl->save(); 
-                return "<p>insert<p>";
+            RoleGroupLevel::where('id_group_level',$idgroup)->where('id_role',$request->id_role)->update([
+                'isview' => $request->isview,
+                'isadd' => $request->isadd,
+                'isedit' => $request->isedit,
+                'isdelete' => $request->isdelete,
+                'isprint' => $request->isprint,
+                'iscustom' => $request->iscustom,
+            ]);
+            return "update";
         }
     }
 }
