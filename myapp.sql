@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 26 Nov 2020 pada 08.28
--- Versi Server: 10.1.28-MariaDB
--- PHP Version: 7.1.10
+-- Waktu pembuatan: 27 Nov 2020 pada 00.58
+-- Versi server: 10.1.38-MariaDB
+-- Versi PHP: 7.1.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -68,8 +68,8 @@ CREATE TABLE `group_level` (
 
 INSERT INTO `group_level` (`id`, `id_group`, `group_level_id`, `note`, `created_at`, `updated_at`) VALUES
 (19, 1, NULL, 'Admin', '2020-11-26 03:14:24', '2020-11-25 20:14:24'),
-(20, 2, NULL, 'Programer', '2020-03-10 06:24:24', '2020-03-09 23:24:24'),
-(21, 3, NULL, 'Content Writter', '2020-03-08 04:34:25', '2020-03-07 21:34:25'),
+(20, 2, NULL, 'Programer', '2020-11-26 14:05:06', '2020-11-26 07:05:06'),
+(21, 3, NULL, 'Content Writter', '2020-11-26 14:05:00', '2020-11-26 07:05:00'),
 (22, 4, NULL, 'Editor', '2020-03-07 14:23:43', '2020-03-07 07:23:43'),
 (24, 1, NULL, NULL, '2020-11-25 22:19:13', '2020-11-25 22:19:13');
 
@@ -134,7 +134,10 @@ INSERT INTO `menu_app` (`id`, `id_role`, `menu_text`, `menu_app_id`, `icon`, `or
 (41245, 10, 'Roles', 41247, '<i class=\"nav-icon fas fa-tag\"></i>', 2, '2020-11-26 02:33:29', '2020-11-25 19:33:29'),
 (41246, 11, 'Menu', 41247, '<i class=\"nav-icon fas fa-chevron-circle-down\"></i>', 3, '2020-11-26 02:33:43', '2020-11-25 19:33:43'),
 (41247, 16, 'Master Data', NULL, '<i class=\"nav-icon fas fa-database\"></i>', 2, '2020-11-26 02:33:14', '2020-11-25 19:33:14'),
-(41250, 13, 'Group', 41237, '<i class=\"nav-icon fas fa-circle\"></i>', 2, '2020-11-25 19:37:18', '2020-11-25 19:37:18');
+(41250, 13, 'Group', 41237, '<i class=\"nav-icon fas fa-circle\"></i>', 2, '2020-11-25 19:37:18', '2020-11-25 19:37:18'),
+(41251, 17, 'Setting', NULL, '<i class=\"nav-icon fas fa-cog\"></i>', 3, '2020-11-26 22:52:26', '2020-11-26 15:52:26'),
+(41252, 18, 'Change Profile', 41251, '<i class=\"nav-icon fas fa-circle\"></i>', 1, '2020-11-26 15:51:11', '2020-11-26 15:51:11'),
+(41253, 19, 'Change Password', 41251, '<i class=\"nav-icon fas fa-circle\"></i>', 2, '2020-11-26 15:52:13', '2020-11-26 15:52:13');
 
 -- --------------------------------------------------------
 
@@ -204,7 +207,10 @@ INSERT INTO `roles` (`id`, `name`, `note`, `url`, `controller`, `accessview`, `a
 (13, 'Group Level', NULL, '/appdashboard/adminsystem/grouplevel', 'GroupLevel', 1, 0, 0, 0, 0, 0, '2020-11-26 03:29:03', '2020-11-25 20:29:03'),
 (14, 'User Group Level', NULL, '/appdashboard/adminsystem/user/usergrouplevel/{iduser}', 'UserGroupLevel', 1, 0, 0, 0, 0, 0, '2020-11-26 03:51:27', '2020-11-25 20:51:27'),
 (15, 'Role Group Level', NULL, '/appdashboard/adminsystem/grouplevel/rolegrouplevel/{idgroup}', 'RoleGroupLevel', 1, 0, 0, 0, 0, 0, '2020-11-26 03:51:10', '2020-11-25 20:51:10'),
-(16, 'Master Data', NULL, NULL, NULL, 1, 0, 0, 0, 0, 0, '2020-11-25 19:24:45', '2020-11-25 19:24:45');
+(16, 'Master Data', NULL, NULL, NULL, 1, 0, 0, 0, 0, 0, '2020-11-25 19:24:45', '2020-11-25 19:24:45'),
+(17, 'Setting', NULL, NULL, NULL, 1, 0, 0, 0, 0, 0, '2020-11-26 15:41:14', '2020-11-26 15:41:14'),
+(18, 'Change Profile', NULL, '/appdashboard/adminsystem/setting/changeprofile', 'ChangeProfile', 1, 0, 1, 0, 0, 0, '2020-11-26 23:18:51', '2020-11-26 16:18:51'),
+(19, 'Change Password', NULL, '/appdashboard/adminsystem/setting/changepassword', 'ChangePassword', 1, 0, 1, 0, 0, 0, '2020-11-26 23:19:22', '2020-11-26 16:19:22');
 
 -- --------------------------------------------------------
 
@@ -231,16 +237,19 @@ CREATE TABLE `role_group_level` (
 --
 
 INSERT INTO `role_group_level` (`id`, `id_role`, `id_group_level`, `isview`, `isadd`, `isedit`, `isdelete`, `isprint`, `iscustom`, `created_at`, `updated_at`) VALUES
-(14, 8, 19, 0, 0, 0, 0, 0, 0, '2020-03-07 23:32:20', '2020-03-07 23:32:20'),
-(29, 9, 19, 0, 0, 0, 0, 0, 0, '2020-03-08 03:17:28', '2020-03-08 03:17:28'),
-(30, 10, 19, 0, 0, 0, 0, 0, 0, '2020-03-08 03:17:29', '2020-03-08 03:17:29'),
-(31, 11, 19, 0, 0, 0, 0, 0, 0, '2020-03-08 03:17:30', '2020-03-08 03:17:30'),
-(32, 12, 19, 0, 0, 0, 0, 0, 0, '2020-03-08 03:17:32', '2020-03-08 03:17:32'),
-(33, 13, 19, 0, 0, 0, 0, 0, 0, '2020-03-08 03:17:33', '2020-03-08 03:17:33'),
-(34, 14, 19, 0, 0, 0, 0, 0, 0, '2020-03-08 03:17:34', '2020-03-08 03:17:34'),
-(35, 15, 19, 0, 0, 0, 0, 0, 0, '2020-03-08 03:17:35', '2020-03-08 03:17:35'),
-(36, 2, 19, 0, 0, 0, 0, 0, 0, '2020-11-25 21:58:50', '2020-11-25 21:58:50'),
-(38, 16, 19, 0, 0, 0, 0, 0, 0, '2020-11-25 22:02:05', '2020-11-25 22:02:05');
+(14, 8, 19, 1, 1, 1, 1, 1, 0, '2020-11-26 12:45:53', '2020-11-26 05:45:53'),
+(29, 9, 19, 1, 1, 1, 1, 0, 0, '2020-11-26 12:46:21', '2020-11-26 05:46:21'),
+(30, 10, 19, 1, 1, 1, 1, 0, 0, '2020-11-26 12:46:23', '2020-11-26 05:46:23'),
+(31, 11, 19, 1, 0, 0, 0, 0, 0, '2020-11-26 12:46:16', '2020-11-26 05:46:16'),
+(32, 12, 19, 1, 0, 0, 0, 0, 0, '2020-11-26 12:45:53', '2020-11-26 05:45:53'),
+(33, 13, 19, 1, 0, 0, 0, 0, 0, '2020-11-26 12:45:45', '2020-11-26 05:45:45'),
+(34, 14, 19, 1, 0, 0, 0, 0, 0, '2020-11-26 12:45:54', '2020-11-26 05:45:54'),
+(35, 15, 19, 1, 0, 0, 0, 0, 0, '2020-11-26 12:45:46', '2020-11-26 05:45:46'),
+(36, 2, 19, 1, 0, 0, 0, 0, 0, '2020-11-26 12:45:34', '2020-11-26 05:45:34'),
+(38, 16, 19, 1, 0, 0, 0, 0, 0, '2020-11-26 23:08:15', '2020-11-26 16:08:15'),
+(39, 19, 19, 1, 0, 1, 0, 0, 0, '2020-11-26 22:54:24', '2020-11-26 15:54:24'),
+(40, 18, 19, 1, 0, 1, 0, 0, 0, '2020-11-26 23:08:17', '2020-11-26 16:08:17'),
+(41, 17, 19, 1, 0, 0, 0, 0, 0, '2020-11-26 23:08:16', '2020-11-26 16:08:16');
 
 -- --------------------------------------------------------
 
@@ -284,7 +293,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `no_hp`, `address`, `avatar`, `gender`, `status`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@admin.com', NULL, '-', '-', '-', 1, 1, '$2y$10$f0PDApCPYD8aEiqCCXIsTueoWvasYI/eTYuMC5t52gwcApgqdO1VK', '1kyLZEcBZEgRri9izi2Vik9LOUkhNbcypm0lEImar7KqrpOCt7AifT2bs90S', '2020-03-03 01:16:43', '2020-11-25 23:48:22');
+(1, 'admin', 'admin@admin.com', NULL, '-', '-', '-', 1, 1, '$2y$10$f0PDApCPYD8aEiqCCXIsTueoWvasYI/eTYuMC5t52gwcApgqdO1VK', 'g20yqUf7nr9AZC9lRfaZxQSIxMMRWZV18nggMzBsYuhujAa0Xirqd3PgQsZq', '2020-03-03 01:16:43', '2020-11-26 16:55:14');
 
 -- --------------------------------------------------------
 
@@ -305,8 +314,7 @@ CREATE TABLE `user_group_level` (
 --
 
 INSERT INTO `user_group_level` (`id`, `id_user`, `id_group_level`, `created_at`, `updated_at`) VALUES
-(36, 1, 19, '2020-03-08 01:26:11', '2020-03-08 01:26:11'),
-(43, 1, 20, '2020-11-25 23:07:20', '2020-11-25 23:07:20');
+(36, 1, 19, '2020-03-08 01:26:11', '2020-03-08 01:26:11');
 
 -- --------------------------------------------------------
 
@@ -342,20 +350,23 @@ INSERT INTO `user_role` (`id`, `id_user`, `id_role`, `allow_view`, `allow_add`, 
 (15, 1, 13, 1, 1, 1, 1, 1, '1', '0000-00-00 00:00:00', '2020-03-09 21:58:51'),
 (16, 1, 14, 1, 1, 1, 1, 1, '1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (17, 1, 15, 1, 1, 1, 1, 1, '1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(18, 1, 16, 1, 1, 1, 1, 1, NULL, '2020-11-25 23:06:42', '2020-11-25 23:06:59');
+(18, 1, 16, 1, 1, 1, 1, 1, NULL, '2020-11-25 23:06:42', '2020-11-25 23:06:59'),
+(19, 1, 17, 1, 0, 0, 0, 0, '0', '2020-11-26 16:14:09', '2020-11-26 16:14:09'),
+(20, 1, 19, 1, 0, 1, 0, 0, '0', '2020-11-26 16:14:16', '2020-11-26 16:21:47'),
+(21, 1, 18, 1, 0, 1, 0, 0, '0', '2020-11-26 16:14:17', '2020-11-26 16:14:18');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `groups`
+-- Indeks untuk tabel `groups`
 --
 ALTER TABLE `groups`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `group_level`
+-- Indeks untuk tabel `group_level`
 --
 ALTER TABLE `group_level`
   ADD PRIMARY KEY (`id`),
@@ -363,20 +374,20 @@ ALTER TABLE `group_level`
   ADD KEY `id_group` (`id_group`);
 
 --
--- Indexes for table `log_app`
+-- Indeks untuk tabel `log_app`
 --
 ALTER TABLE `log_app`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `log_error`
+-- Indeks untuk tabel `log_error`
 --
 ALTER TABLE `log_error`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `menu_app`
+-- Indeks untuk tabel `menu_app`
 --
 ALTER TABLE `menu_app`
   ADD PRIMARY KEY (`id`),
@@ -384,19 +395,19 @@ ALTER TABLE `menu_app`
   ADD KEY `id_parent` (`menu_app_id`);
 
 --
--- Indexes for table `migrations`
+-- Indeks untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `password_resets`
+-- Indeks untuk tabel `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Indexes for table `roles`
+-- Indeks untuk tabel `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`),
@@ -404,7 +415,7 @@ ALTER TABLE `roles`
   ADD UNIQUE KEY `url` (`url`);
 
 --
--- Indexes for table `role_group_level`
+-- Indeks untuk tabel `role_group_level`
 --
 ALTER TABLE `role_group_level`
   ADD PRIMARY KEY (`id`),
@@ -412,20 +423,20 @@ ALTER TABLE `role_group_level`
   ADD KEY `id_group_level` (`id_group_level`);
 
 --
--- Indexes for table `setting_app`
+-- Indeks untuk tabel `setting_app`
 --
 ALTER TABLE `setting_app`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- Indexes for table `user_group_level`
+-- Indeks untuk tabel `user_group_level`
 --
 ALTER TABLE `user_group_level`
   ADD PRIMARY KEY (`id`),
@@ -433,7 +444,7 @@ ALTER TABLE `user_group_level`
   ADD KEY `id_group_level` (`id_group_level`);
 
 --
--- Indexes for table `user_role`
+-- Indeks untuk tabel `user_role`
 --
 ALTER TABLE `user_role`
   ADD PRIMARY KEY (`id`),
@@ -441,80 +452,80 @@ ALTER TABLE `user_role`
   ADD KEY `id_role` (`id_role`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `groups`
+-- AUTO_INCREMENT untuk tabel `groups`
 --
 ALTER TABLE `groups`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `group_level`
+-- AUTO_INCREMENT untuk tabel `group_level`
 --
 ALTER TABLE `group_level`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT for table `log_app`
+-- AUTO_INCREMENT untuk tabel `log_app`
 --
 ALTER TABLE `log_app`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `log_error`
+-- AUTO_INCREMENT untuk tabel `log_error`
 --
 ALTER TABLE `log_error`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `menu_app`
+-- AUTO_INCREMENT untuk tabel `menu_app`
 --
 ALTER TABLE `menu_app`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41251;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41254;
 
 --
--- AUTO_INCREMENT for table `migrations`
+-- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `roles`
+-- AUTO_INCREMENT untuk tabel `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT for table `role_group_level`
+-- AUTO_INCREMENT untuk tabel `role_group_level`
 --
 ALTER TABLE `role_group_level`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
--- AUTO_INCREMENT for table `setting_app`
+-- AUTO_INCREMENT untuk tabel `setting_app`
 --
 ALTER TABLE `setting_app`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `user_group_level`
+-- AUTO_INCREMENT untuk tabel `user_group_level`
 --
 ALTER TABLE `user_group_level`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
--- AUTO_INCREMENT for table `user_role`
+-- AUTO_INCREMENT untuk tabel `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
