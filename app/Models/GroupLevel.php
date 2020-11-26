@@ -17,4 +17,5 @@ class GroupLevel extends Model
     {
         return $this->hasMany(GroupLevel::class)->selectRaw("groups.name,group_level.*,(SELECT '1' FROM user_group_level WHERE id_group_level = group_level.id ) as isjoin")->leftJoin("groups","groups.id","group_level.id_group" )->with('GroupsLevel');
     }
+
 }
