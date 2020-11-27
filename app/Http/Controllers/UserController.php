@@ -32,6 +32,7 @@ class UserController extends Controller
        else
        {
             $tbl = new User();
+            $tbl->userid = $request->userid;
             $tbl->name = $request->name;
             $tbl->email = $request->email;
             $tbl->no_hp = $request->no_hp;
@@ -55,6 +56,7 @@ class UserController extends Controller
             else
             {
                     User::where('id',$id)->update([
+                        'userid' => $request->userid,
                         'name' => $request->name,
                         'email' => $request->email,
                         'no_hp' => $request->no_hp,

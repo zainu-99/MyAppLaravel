@@ -6,6 +6,10 @@
                         <form role="form" method="POST" action="">
                             {{ csrf_field() }} 
                             <div class="form-group" style="display:">
+                                <label>User ID :</label>
+                                <input type="text" required="" class="form-control" name="userid" value="" placeholder=""/>
+                            </div>
+                            <div class="form-group" style="display:">
                                 <label>Name :</label>
                                 <input type="text" required="" class="form-control" name="name" value="" placeholder=""/>
                             </div>

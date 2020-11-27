@@ -14,6 +14,7 @@
               <thead >
                   <tr> 
                       <td>No</td>
+                      <td>User ID</td>
                       <td>Name</td>
                       <td>Email</td>
                       <td>NoHp</td>
@@ -28,6 +29,7 @@
                     @foreach($list as $key=>$item)
                     <tr>
                         <td>{{$key+1}}</td>
+                        <td nowrap>{{$item->userid}}</td>
                         <td nowrap>{{$item->name}}</td>
                         <td nowrap>{{$item->email}}</td>
                         <td nowrap>{{$item->no_hp}}</td>
@@ -36,9 +38,9 @@
                         <td nowrap>{{$item->created_at}}</td>
                         <td nowrap>{{$item->updated_at}}</td>
                         <td style="width: 237px" nowrap>
-                            <a class="btn btn-xs btn-warning text-light" onclick="resetPassword({{$item->id}});" ><i class="fas fa-key"></i></a>
-                            <a class="btn btn-xs btn-info text-light" href="{{Request::url().'/useraccess/'.$item->id}}"><i class="fas fa-shield-alt"></i></a>
-                            <a class="btn btn-xs btn-warning text-light" href="{{ Request::url().'/usergrouplevel/'.$item->id}}"><i class="fas fa-layer-group"></i></a>
+                            <a title="reset password to admin" class="btn btn-xs btn-warning text-light" onclick="resetPassword({{$item->id}});" ><i class="fas fa-key"></i></a>
+                            <a title="set user access" class="btn btn-xs btn-info text-light" href="{{Request::url().'/useraccess/'.$item->id}}"><i class="fas fa-shield-alt"></i></a>
+                            <a title="set user group" class="btn btn-xs btn-warning text-light" href="{{ Request::url().'/usergrouplevel/'.$item->id}}"><i class="fas fa-layer-group"></i></a>
                             @include('layouts.action.edit-button') 
                             @include('layouts.action.delete-button') 
                         </td>

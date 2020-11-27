@@ -1,1 +1,1 @@
-<a class="btn btn-xs btn-primary" href="{{Request::url()}}/edit/{{$item->id}}"><i class="fa fa-edit"></i></a>
+<a title="edit data" class="btn btn-xs btn-primary" href="{{Request::url()}}/edit/{{$item->id}}"><i class="fa fa-edit"></i></a>

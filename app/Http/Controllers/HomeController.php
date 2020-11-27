@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Menu;
 use Illuminate\Support\Facades\Session;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -27,6 +28,7 @@ class HomeController extends Controller
     public function index()
     {
         parent::CreateSessionMenu();
+        //dd($user = Auth::user());
         return view('home');
     }
 }
