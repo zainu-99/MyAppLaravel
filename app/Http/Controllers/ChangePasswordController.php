@@ -4,15 +4,10 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Auth;
 use Illuminate\Support\Facades\Session;
+use Auth;
 class ChangePasswordController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -21,8 +16,11 @@ class ChangePasswordController extends Controller
     {
             if(!isset($request->submit))
             {
-                Session::put('pagename', "Change Profile");
-                Session::save();
+                if(Session::get('pagename')!="Change Password")
+                {
+                    Session::put('pagename', "Change Password");
+                    Session::save();
+                }
                 return view("appdashboard.setting.changepassword.index");
             }
             else
@@ -35,7 +33,7 @@ class ChangePasswordController extends Controller
                         User::where('id',Auth::user()->id)->update([
                             'password' => Hash::make($request->new_password)
                             ]);  
-                            return redirect()->back()->with(['success' => 'Change Profile Saved']);
+                            return redirect()->back()->with(['success' => 'Change Password Saved']);
                     }
                     else
                     {                 

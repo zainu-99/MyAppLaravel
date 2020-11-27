@@ -8,11 +8,7 @@ use Auth;
 use Illuminate\Support\Facades\Session;
 class ChangeProfileController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -21,9 +17,12 @@ class ChangeProfileController extends Controller
     {
             if(!isset($request->submit))
             {
-                Session::put('pagename', "Change Profile");
-                Session::save();
-                $item = User::where('id',Auth::user()->id)->first();
+                if(Session::get('pagename')!="Change Profile")
+                {
+                    Session::put('pagename', "Change Profile");
+                    Session::save();
+                }
+                $item = User::where('id',1)->first();
                 return view("appdashboard.setting.changeprofile.index", ["item"=>$item]);
             }
             else
