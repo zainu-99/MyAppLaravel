@@ -5,6 +5,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Auth;
+use DataTables;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
@@ -16,7 +17,11 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
+    }
+    public function apigetusers()
+    {
+        return Datatables::of(User::selectRaw('*')->get())->make(true);
     }
     public function index(Request $request)
     {

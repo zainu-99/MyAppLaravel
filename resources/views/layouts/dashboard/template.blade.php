@@ -14,7 +14,8 @@
   <link rel="stylesheet" href="{{ asset($public.'AdminLTE') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset($public.'AdminLTE') }}/dist/css/adminlte.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> 
+  <script src="{{ asset($public.'AdminLTE') }}/plugins/jquery/jquery.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini" style="visibility: hidden">
 <div class="wrapper" >
@@ -117,7 +118,6 @@
    Copyright &copy; 2019 | <strong>Framework by Deretcode.com</strong>
   </footer>
 </div>
-<script src="{{ asset($public.'AdminLTE') }}/plugins/jquery/jquery.min.js"></script>
 <script src="{{ asset($public.'AdminLTE') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="{{ asset($public.'AdminLTE') }}/dist/js/adminlte.min.js"></script>
 
@@ -146,15 +146,8 @@
         var isColllapse = !(localStorage.getItem("toggle-colapes") === 'true'); 
         localStorage.setItem("toggle-colapes", isColllapse);
     });
-    $('#serversidedatatable').DataTable( {
-      //  "processing": true,
-      //  "serverSide": true,
-      //  "ajax": "../server_side/scripts/server_processing.php"
-    } );
 
-
-
-
+    
     $("body").attr("style","visibility: visible");
 } );
 </script>

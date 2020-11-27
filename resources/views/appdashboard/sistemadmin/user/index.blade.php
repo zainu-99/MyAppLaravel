@@ -25,7 +25,7 @@
                       <td>Action</td>
                   </tr>
               </thead>
-              <tbody>
+              {{-- <tbody>
                     @foreach($list as $key=>$item)
                     <tr>
                         <td>{{$key+1}}</td>
@@ -46,7 +46,7 @@
                         </td>
                     </tr>
                     @endforeach
-              </tbody>
+              </tbody> --}}
           </table>
         </div>
 </div>
@@ -70,5 +70,50 @@
             }); 
         }
      }
+     $(document).ready(function() {
+       var t = $('#serversidedatatable').DataTable( {
+      "columnDefs": [ {
+            "searchable": false,
+            "orderable": false,
+            "targets": 0
+        } ],
+       "order": [[ 1, 'asc' ]],
+       "processing": true,
+       "serverSide": true,
+       lengthMenu: [10, 15, 20, 50, 100, 200, 500],       
+       "ajax": "{{URL::to('/')}}/api/appdashboard/adminsystem/user",
+        columns: [
+            { data: null, name: 'nomor' },
+            { data: 'userid', name: 'userid' },
+            { data: 'name', name: 'name' },
+            { data: 'email', name: 'email' },
+            { data: 'no_hp', name: 'no_hp' },
+            { data: 'address', name: 'address' },
+            { data: 'gender', name: 'gender' },
+            { data: 'created_at', name: 'created_at' },
+            { data: 'updated_at', name: 'updated_at' },
+            { data: null,name:'action',"sWidth": "150px", "bSortable": false,"mRender": function (o) { 
+              return '<a title="reset password to admin" class="btn btn-xs btn-warning text-light" onclick="resetPassword('+o.id+');" ><i class="fas fa-key"></i></a>'+
+               ' <a title="set user access" class="btn btn-xs btn-info text-light" href="{{Request::url()}}/useraccess/'+ o.id +'"><i class="fas fa-shield-alt"></i></a>'+
+               ' <a title="set user group" class="btn btn-xs btn-warning text-light" href="{{ Request::url()}}/usergrouplevel/'+ o.id +'"><i class="fas fa-layer-group"></i></a>'+
+               ' <a title="edit data" class="btn btn-xs btn-primary" href="{{Request::url()}}/edit/'+ o.id +'"><i class="fa fa-edit"></i></a>'+
+               ' <a title="delete data" class="btn btn-xs btn-danger text-light" onclick="alertDelete('+ o.id +');"> <i class="fa fa-trash"></i> </a>';
+            }}
+        ],
+        "order": [[ 1, 'asc' ]],        
+      });
+      t.on('draw', function () {
+        reinitdatatable()
+      });
+
+      function reinitdatatable(){
+        t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                cell.innerHTML = i+1;
+            });
+            $('#serversidedatatable tbody tr td').each(function(){
+                $(this).attr('nowrap', 'nowrap');
+            });
+      }
+     });
     </script>
 @endsection
