@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 @php
-    $public="";  
+    if(strpos(URL::to('/'), 'public') !== false)
+        $public="";
+    else  
+        $public="public/";
 @endphp
 <html lang="en">
 <head>
@@ -147,7 +150,7 @@
         localStorage.setItem("toggle-colapes", isColllapse);
     });
 
-    
+
     $("body").attr("style","visibility: visible");
 } );
 </script>
