@@ -28,12 +28,12 @@ class MenuAppController extends Controller
        if(!isset($request->submit))
        {
             $roles =Role::orderBy('name')->get();
-            $parents =Menu::All();
+            $parents =MenuApp::All();
             return view("appdashboard.masterdata.menu.add", ["roles"=>$roles,"parents"=>$parents]);
        }
        else
        {
-            $tbl = new Menu();
+            $tbl = new MenuApp();
             $tbl->id_role = $request->id_role;
             $tbl->menu_text = $request->menu_text;
             $tbl->menu_app_id = ($request->id_parent == "-"? NULL: $request->id_parent); 
@@ -48,13 +48,13 @@ class MenuAppController extends Controller
         if(!isset($request->submit))
        {
             $roles =Role::orderBy('name')->get();
-            $item = Menu::where('id',$request->id)->first();
-            $parents =Menu::where('id',"<>",$request->id)->get();
+            $item = MenuApp::where('id',$request->id)->first();
+            $parents =MenuApp::where('id',"<>",$request->id)->get();
             return view("appdashboard.masterdata.menu.edit", ["item"=>$item,"roles"=>$roles,"parents"=>$parents]);
        }
        else
        {
-        Menu::where('id',$request->id)->update([
+        MenuApp::where('id',$request->id)->update([
                 'id_role' => $request->id_role,
                 'menu_text' => $request->menu_text,
                 'menu_app_id' => ($request->id_parent == "-"? NULL: $request->id_parent),
@@ -66,7 +66,7 @@ class MenuAppController extends Controller
     }
     public function delete(Request $request,$id)
     {
-    	Menu::where('id',$request->id)->delete();
+    	MenuApp::where('id',$request->id)->delete();
         return redirect($request->url().'/../../');
     }
 }

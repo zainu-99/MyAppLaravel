@@ -18,14 +18,13 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
+    public function index(Request $request)
     {
         Session::put('pagename', "User Data");
         Session::save();
 		$list =User::All();
         return view("appdashboard.sistemadmin.user.index", ["list"=>$list]);
     }
-
     public function add(Request $request)
     {
        if(!isset($request->submit)) return view("appdashboard.sistemadmin.user.add");

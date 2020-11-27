@@ -147,8 +147,8 @@
         localStorage.setItem("toggle-colapes", isColllapse);
     });
     $('#serversidedatatable').DataTable( {
-       // "processing": true,
-       // "serverSide": true,
+      //  "processing": true,
+      //  "serverSide": true,
       //  "ajax": "../server_side/scripts/server_processing.php"
     } );
 
