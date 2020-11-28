@@ -70,6 +70,12 @@
             }); 
         }
      }
+     function alertDelete(id) {
+        var r = confirm("Are You Sure Want To Delete?");
+        if (r == true) {
+            window.location = "{{Request::url()}}/delete/" + id;
+        }
+    }
      $(document).ready(function() {
        var t = $('#serversidedatatable').DataTable( {
       "columnDefs": [ {

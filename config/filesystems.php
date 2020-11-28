@@ -43,9 +43,16 @@ return [
 
     'disks' => [
 
-        'local' => [
-            'driver' => 'local',
-            'root' => storage_path('app'),
+        // 'local' => [
+        //     'driver' => 'local',
+        //     'root' => storage_path('app'),
+        // ],
+        'disks' => [
+            'local',
+            'my-disk' => [
+                'URL' => url('to/disk'),
+                'alias' => 'Local storage',
+            ]
         ],
 
         'public' => [

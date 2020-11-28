@@ -1,8 +1,13 @@
 @extends('layouts.dashboard.template')
 
 @section('content')
+@php
+    if(strpos(URL::to('/'), 'public') !== false)
+        $public="";
+    else  
+        $public="public/";
+@endphp
 <div class="card-header"><strong>ADD DATA</strong></div>
-
 <div class="card-body">
         <form role="form" method="POST" action="">
             {{ csrf_field() }} 
@@ -34,6 +39,11 @@
                         <input id="cballshow" value="0"  @if($item->gender == 0) checked @endif name="gender" type="radio">Female
                 </div>
                 </div>
+            </div>
+            <div class="form-group" style="display:">      
+                <label for="feature_image">Photo</label>
+                <input type="text" id="feature_image" readonly name="photo" value="{{$item->avatar}}">
+                <a href="" class="popup_selector" data-url="{{ asset($public.'') }}/elfinder/popup/" data-inputid="feature_image">Select Image</a>
             </div>
             <div class="box-footer">
                 <input type="submit" name="submit" type="submit" class="btn btn-primary pull-right" value="SUBMIT"></input>

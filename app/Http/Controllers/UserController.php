@@ -43,6 +43,7 @@ class UserController extends Controller
             $tbl->address = $request->address;
             $tbl->gender = $request->gender;
             $tbl->status = 1;
+            $tbl->avatar = $request->photo;
             $tbl->password = Hash::make($request->password);
             $tbl->save();
             return redirect($request->url().'/../');
@@ -66,7 +67,8 @@ class UserController extends Controller
                         'no_hp' => $request->no_hp,
                         'address' => $request->address,
                         'gender' => $request->gender,
-                        'status' => 1
+                        'status' => 1,
+                        'avatar' => $request->photo
                     ]);
                     return redirect($request->url().'/../../');
             }

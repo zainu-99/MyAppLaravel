@@ -1,6 +1,12 @@
 @extends('layouts.dashboard.template')
 
 @section('content')
+@php
+    if(strpos(URL::to('/'), 'public') !== false)
+        $public="";
+    else  
+        $public="public/";
+@endphp
 <div class="card-header"><strong>ADD DATA</strong></div>
                 <div class="card-body">
                         <form role="form" method="POST" action="">
@@ -34,6 +40,11 @@
 
                                 </div>
                                 </div>
+                            </div>
+                            <div class="form-group" style="display:">      
+                                <label for="feature_image">Photo</label>
+                                <input type="text" id="feature_image" readonly name="photo" value="">
+                                <a href="" class="popup_selector" data-url="{{ asset($public.'') }}/elfinder/popup/" data-inputid="feature_image">Select Image</a>
                             </div>
                             <div class="form-group" style="display:">
                                 <label>Password :</label>

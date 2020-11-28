@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="{{ asset($public.'AdminLTE') }}/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="{{ asset($public.'AdminLTE') }}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="{{ asset($public.'AdminLTE') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link href="{{ asset($public.'') }}/css/colorbox.css" rel="stylesheet">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset($public.'AdminLTE') }}/dist/css/adminlte.min.css">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> 
@@ -70,10 +71,10 @@
     <div class="sidebar">
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset($public.'AdminLTE') }}/dist/img/user.png" class="img-circle elevation-2" alt="User Image">
+          <img onerror="this.onerror=null;this.src='{{ asset($public.'')}}/AdminLTE/dist/img/user.png';" src="{{ asset($public.Auth::user()->avatar)}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <p  class="text-light" title="{{ Auth::user()->email }}: {{ Auth::user()->name }}"><strong>ID :</strong> {{ Auth::user()->userid }}<br/><strong>Name :</strong> {{ Auth::user()->name }}</p>
+          <span  class="text-light" title="{{ Auth::user()->email }}: {{ Auth::user()->name }}"><strong>ID :</strong> {{ Auth::user()->userid }}<br/><strong>Name :</strong> {{ Auth::user()->name }}</span>
         </div>
       </div>
       <nav class="mt-2">
@@ -123,7 +124,8 @@
 </div>
 <script src="{{ asset($public.'AdminLTE') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="{{ asset($public.'AdminLTE') }}/dist/js/adminlte.min.js"></script>
-
+<script src="{{ asset($public.'') }}/packages/barryvdh/elfinder/js/standalonepopup.min.js"></script>
+<script src="{{ asset($public.'') }}/js/colorbox.js"></script>
 <script src="{{ asset($public.'AdminLTE') }}/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="{{ asset($public.'AdminLTE') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="{{ asset($public.'AdminLTE') }}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
