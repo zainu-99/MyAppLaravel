@@ -85,7 +85,7 @@
         $("#id_group").val(id_group);
         $("#id").val(id);
         $("#submit").val("UPDATE");
-        $("#form").attr('action', '{{Request::url()}}/edit/'+group_level_id);
+        $("#form").attr('action', '{{Request::url()}}/edit/'+id);
         $(".parent_option").show();
         $("#parent_option_" + id).hide();
     }
