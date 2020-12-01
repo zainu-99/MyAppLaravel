@@ -22,7 +22,7 @@ class ChangeProfileController extends Controller
                     Session::put('pagename', "Change Profile");
                     Session::save();
                 }
-                $item = User::where('id',1)->first();
+                $item = User::where('id',Auth::user()->id)->first();
                 return view("appdashboard.setting.changeprofile.index", ["item"=>$item]);
             }
             else

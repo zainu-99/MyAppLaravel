@@ -46,4 +46,5 @@ class ChangePasswordController extends Controller
                 }
             }
     }
+    
 }
