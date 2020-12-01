@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\RoleGroupLevel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class RoleGroupLevelController extends Controller
@@ -16,7 +17,7 @@ class RoleGroupLevelController extends Controller
     {
         Session::put('pagename', "Role Group");
         Session::save();
-        $list =Role::selectRaw("roles.*,b.isview,b.isadd,b.isedit,b.isdelete,b.isprint,b.iscustom")->leftJoin("role_group_level as b","roles.id","b.id_role")->OrderBy("url")->OrderBy("name")->get();
+        $list =Role::selectRaw("roles.*,b.isview,b.isadd,b.isedit,b.isdelete,b.isprint,b.iscustom")->leftJoin(DB::raw("(select * from role_group_level where id_group_level='".$idgroup."') as b"),"b.id_role","roles.id")->OrderBy("url")->OrderBy("name")->get();        
         return view("appdashboard.sistemadmin.grouplevel.grouprole.index", ["list"=>$list]);
     }
     public function add(Request $request,$idgroup)
