@@ -37,7 +37,7 @@ class GroupLevelController extends Controller
     }
     public function edit(Request $request,$id)
     {
-    	GroupLevel::where('id',$request->id)->update([
+    	GroupLevel::where('id',$id)->update([
             'id_group' => $request->id_group,
             'group_level_id' => ($request->group_level_id == -1? NULL: $request->group_level_id),
             'note' => $request->note
@@ -46,7 +46,7 @@ class GroupLevelController extends Controller
     }
     public function delete(Request $request,$id)
     {
-    	GroupLevel::where('id',$request->id)->delete();
+    	GroupLevel::where('id',$id)->delete();
         return redirect($request->url().'/../../');
     }
     
