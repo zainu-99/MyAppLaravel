@@ -1,3 +1,4 @@
+@if(Session::get('access')->allow_delete == 1)
 <a title="delete data" class="btn btn-xs btn-danger text-light" onclick="alertDelete({{$item->id}});"> <i class="fa fa-trash"></i> </a>
 <script>
     function alertDelete(id) {
@@ -7,3 +8,4 @@
         }
     }
 </script>
+@endif

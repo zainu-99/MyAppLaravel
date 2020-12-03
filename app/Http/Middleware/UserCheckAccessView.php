@@ -5,6 +5,7 @@ use App\Models\UserRole;
 use App\Models\Role;
 use Closure;
 use Auth;
+use Illuminate\Support\Facades\Session;
 
 class UserCheckAccessView
 {
@@ -22,6 +23,14 @@ class UserCheckAccessView
         ->where('users.id',Auth::user()->id)
         ->where('user_role.allow_view',1)
         ->count();
+        
+        $access = UserRole::selectRaw("user_role.*")->leftJoin('users','user_role.id_user','users.id')
+        ->where('user_role.id',$id_user_role)
+        ->where('users.id',Auth::user()->id)
+        ->first();
+        Session::put('access', $access);
+        Session::save();
+
         if($count>0)
         {
             return $next($request);
