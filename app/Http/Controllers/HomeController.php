@@ -28,7 +28,6 @@ class HomeController extends Controller
     public function index()
     {
         parent::CreateSessionMenu();
-        //dd($user = Auth::user());
         return view('home');
     }
 }
