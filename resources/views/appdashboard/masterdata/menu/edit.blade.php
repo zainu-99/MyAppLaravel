@@ -1,6 +1,7 @@
 @extends('layouts.dashboard.template')
 
 @section('content')
+<div>
 <div class="card-header">EDIT DATA</div>
 
                 <div class="card-body">
