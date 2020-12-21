@@ -23,14 +23,12 @@
                             </div>
                             <div class="form-group">
                                 <label>Parent :</label>
-                                <div class="">
-                                <select class=""  name="id_parent" style="width: 100%;height:39px">
-                                <option value="-">No Parent</option>
-                                @foreach($parents as $parent)
-                                    <option @if($item->id == $parent->id) hidden @endif @if($item->menu_app_id == $parent->id) selected @endif value="{{$parent->id}}">{{$parent->menu_text}}</option>
-                                @endforeach
+                                <select class=""  name="id_parent" style="width: 100%;height:39px">  
+                                    <option value="-">No Parent</option>
+                                    @foreach($parents as $parent)
+                                        @include('appdashboard.masterdata.menu.option', ['child' => $parent,'sparator'=>'',"item_id"=>$item->menu_app_id])       
+                                    @endforeach
                                 </select>
-                                </div>
                             </div>
                             <div class="form-group">
                                 <label>Icon :</label>

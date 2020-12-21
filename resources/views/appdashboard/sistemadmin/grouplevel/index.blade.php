@@ -30,8 +30,8 @@
                       Parent
                       <select class="" id="group_level_id"  name="group_level_id" style="width: 100%;height:39px">  
                         <option value="-1">No Parent</option>
-                        @foreach($groupLevels as $groupLevel)
-                            <option class="parent_option" id="parent_option_{{$groupLevel->id}}" value="{{$groupLevel->id}}">{{$groupLevel->name}} - {{$groupLevel->note}}</option>
+                        @foreach($groupLevels as $parent)
+                            @include('appdashboard.sistemadmin.grouplevel.option', ['child' => $parent,'sparator'=>''])       
                         @endforeach
                       </select>
                     </div>

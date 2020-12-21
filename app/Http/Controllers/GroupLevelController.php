@@ -15,12 +15,15 @@ class GroupLevelController extends Controller
         $this->middleware('auth');
     }
 
+    
     public function index(Request $request)
     {
             Session::put('pagename', "Group Data");
             Session::save();
             $groups = Group::All();
-            $groupLevels = GroupLevel::select("group_level.*","groups.name")->leftJoin("groups","groups.id","group_level.id_group")->get();
+            $groupLevels = GroupLevel::select("group_level.*","groups.name")->whereNull('group_level_id')
+            ->with('childrenGroupsLevel')->leftJoin("groups","groups.id","group_level.id_group")
+            ->get();
             $list = GroupLevel::select("group_level.*","groups.name")->whereNull('group_level_id')
             ->with('childrenGroupsLevel')->leftJoin("groups","groups.id","group_level.id_group")
             ->get();
